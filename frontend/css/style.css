@@ -1,0 +1,516 @@
+/* ================ */
+/* === Variables === */
+/* ================ */
+:root {
+    /* Dark Theme Colors */
+    --primary: #2c3e50;
+    --primary-hover: #1a252f;
+    --secondary: #3498db;
+    --secondary-hover: #2980b9;
+    --danger: #e74c3c;
+    --danger-hover: #c0392b;
+    --success: #27ae60;
+    --success-hover: #219653;
+    --info: #2980b9;
+
+    /* Backgrounds */
+    --body-bg: #1e272e;
+    --card-bg: #2d3436;
+    --white: #f5f6fa;
+    --modal-bg: #2d3436;
+    --message-sent: #273c75;
+    --message-received: #353b48;
+
+    /* Text */
+    --text-dark: #f5f6fa;
+    --text-medium: #dcdde1;
+    --text-light: #a4b0be;
+    --text-muted: #7f8fa6;
+
+    /* Borders & Shadows */
+    --border-radius: 8px;
+    --border-color: #3d3d3d;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+}
+
+/* ================ */
+/* === Base Styles === */
+/* ================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: var(--body-bg);
+    color: var(--text-medium);
+    padding-top: 70px;
+    line-height: 1.6;
+}
+
+/* ================ */
+/* === Header === */
+/* ================ */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* ================ */
+/* === Buttons === */
+/* ================ */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-hover);
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--success-hover);
+}
+
+.submit-logot {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1001;
+    padding: 8px 16px;
+}
+
+/* ================ */
+/* === Messages === */
+/* ================ */
+.message {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 70%;
+    margin: 8px;
+    padding: 12px 16px;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    clear: both;
+    box-shadow: var(--shadow);
+}
+
+.message.sent {
+    background-color: var(--message-sent);
+    color: var(--white);
+    float: right;
+    text-align: right;
+    border-bottom-right-radius: 0;
+}
+
+.message.received {
+    background-color: var(--message-received);
+    color: var(--white);
+    float: left;
+    text-align: left;
+    border-bottom-left-radius: 0;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.message-header strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.created {
+    display: block;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 6px;
+}
+
+/* ================ */
+/* === Chat Box === */
+/* ================ */
+.chat-box {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    width: 350px;
+    box-shadow: var(--shadow);
+    padding: 12px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: var(--white);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.messages {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    margin-bottom: 12px;
+    background: var(--primary);
+    border-radius: var(--border-radius);
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-box input {
+    flex: 1;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-medium);
+}
+
+.chat-box button {
+    padding: 10px 16px;
+}
+
+/* ================ */
+/* === User List === */
+/* ================ */
+.user-list {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin: 20px auto;
+    padding: var(--spacing-md);
+    width: 80%;
+    max-width: 600px;
+    box-shadow: var(--shadow);
+}
+
+.user-list h2 {
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.user-item {
+    padding: 12px 16px;
+    margin: 8px 0;
+    background-color: var(--primary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--text-medium);
+    border-left: 4px solid var(--secondary);
+}
+
+.user-item:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+    transform: translateX(5px);
+}
+
+/* ================ */
+/* === Posts === */
+/* ================ */
+.post {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) auto;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.post:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.post h3 {
+    color: var(--white);
+    margin: var(--spacing-sm) 0;
+    font-size: 1.3rem;
+}
+
+.post p {
+    color: var(--text-medium);
+    margin: var(--spacing-sm) 0;
+    line-height: 1.7;
+}
+
+.comment {
+    background-color: var(--primary);
+    padding: 12px;
+    margin: 12px auto;
+    border-left: 4px solid var(--secondary);
+    border-radius: var(--border-radius);
+    width: 85%;
+    max-width: 550px;
+    box-shadow: var(--shadow);
+}
+
+/* ================ */
+/* === Forms === */
+/* ================ */
+.post-form,
+#comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.post-input,
+.post-textarea,
+.input-field,
+#comment-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background: var(--primary);
+    color: var(--text-medium);
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.post-input:focus,
+.post-textarea:focus,
+.input-field:focus {
+    border-color: var(--secondary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
+
+.post-submit,
+.submit-button {
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: var(--spacing-sm);
+}
+
+.post-submit:hover,
+.submit-button:hover {
+    background-color: var(--secondary-hover);
+}
+
+/* ================ */
+/* === Modals === */
+/* ================ */
+.modal-overlay,
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-dialog,
+.post-dialog {
+    background-color: var(--modal-bg);
+    width: 90%;
+    max-width: 400px;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    text-align: center;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+}
+
+.post-dialog {
+    max-width: 600px;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: all 0.3s ease;
+    background: none;
+    border: none;
+}
+
+.close-button:hover {
+    color: var(--danger);
+    transform: rotate(90deg);
+}
+
+/* ================ */
+/* === FAB Button === */
+/* ================ */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--secondary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.fab:hover {
+    transform: rotate(90deg) scale(1.1);
+    background-color: var(--secondary-hover);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* ================ */
+/* === Utility Classes === */
+/* ================ */
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: var(--spacing-sm);
+}
+
+.mt-2 {
+    margin-top: var(--spacing-md);
+}
+
+.mt-3 {
+    margin-top: var(--spacing-lg);
+}
+
+.mb-1 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.mb-2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.mb-3 {
+    margin-bottom: var(--spacing-lg);
+}
