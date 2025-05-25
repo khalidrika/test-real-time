@@ -60,7 +60,7 @@ export async function renderUsers() {
     }
 }
 
-function buildMessageElement(msg) {
+export function buildMessageElement(msg) {
     const msgEl = document.createElement("div");
     msgEl.className = `message ${msg.from === currentUserId ? "sent" : "received"}`;
 
@@ -149,7 +149,7 @@ export async function openChatWindow(user) {
             }
 
             const fragment = document.createDocumentFragment();
-            messageChunk.reverse().forEach(msg => {
+            messageChunk.forEach(msg => {
                 const msgEl = buildMessageElement(msg);
                 if (msgEl) fragment.prepend(msgEl);
             });

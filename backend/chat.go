@@ -207,15 +207,14 @@ func GetMessagesHandler(w http.ResponseWriter, r *http.Request) {
 		ErrorHandler(w, "Invalid userId", http.StatusBadRequest)
 		return
 	}
-
 	rows, err := DB.Query(`
-	SELECT m.sender_id, m.receiver_id, m.content, m.created_at, u.nickname
-	FROM messages m
-	JOIN users u ON m.sender_id = u.id
-	WHERE (m.sender_id = ? AND m.receiver_id = ?) OR (m.sender_id = ? AND m.receiver_id = ?)
-	ORDER BY m.created_at ASC
-	LIMIT 10 OFFSET ?
-	`, userID, otherUserID, otherUserID, userID, offset)
+    SELECT m.sender_id, m.receiver_id, m.content, m.created_at, u.nickname
+    FROM messages m
+    JOIN users u ON m.sender_id = u.id
+    WHERE (m.sender_id = ? AND m.receiver_id = ?) OR (m.sender_id = ? AND m.receiver_id = ?)
+    ORDER BY m.created_at DESC
+    LIMIT 10 OFFSET ?
+    `, userID, otherUserID, otherUserID, userID, offset)
 	if err != nil {
 		ErrorHandler(w, "Database error", http.StatusInternalServerError)
 		return

@@ -1,4 +1,4 @@
-import { currentUserId } from "./chat.js";
+import { buildMessageElement, currentUserId } from "./chat.js";
 
 export let socket = null
 export function UpgredConnetion() {
@@ -20,13 +20,17 @@ export function socketEvent() {
         const msg = JSON.parse(e.data);
 
         const senderchat = document.getElementById(`${msg.to}`);
-        const receivechat = document.getElementById(`${msg.from}`);
+        console.log(msg.to);
+
+        const receivechat = document.querySelector(`div[data-user-id="${msg.from}"]`);
+        console.log(receivechat);
+
         // console.log(activeChat);
         if (senderchat) {
-            writeMessage(senderchat, msg);
+            writeMessage(msg);
 
         } else if (receivechat) {
-            writeMessage(receivechat, msg);
+            writeMessage(msg);
         } else {
             console.log("No active chat window to display the message");
         }
@@ -37,7 +41,9 @@ export function socketEvent() {
 }
 function writeMessage(msg) {
     const userId = msg.from === currentUserId ? String(msg.to) : String(msg.from);
-    const chatBox = document.querySelector(`.chat-box[data-user-id="${userId}"]`);
+    console.log(userId);
+
+    const chatBox = document.querySelector(`div[data-user-id="${userId}"]`);
     if (!chatBox) {
         console.log("No active chat window to display the message");
         return;
@@ -53,5 +59,3 @@ function writeMessage(msg) {
     const empty = messages.querySelector(".no-messages");
     if (empty) empty.remove();
 }
-
-
